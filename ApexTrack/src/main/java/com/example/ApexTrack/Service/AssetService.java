@@ -1,19 +1,25 @@
 package com.example.ApexTrack.Service;
 
 import com.example.ApexTrack.Model.Asset;
+import com.example.ApexTrack.Model.Employ;
 import com.example.ApexTrack.repository.AssetRepo;
+import com.example.ApexTrack.repository.EmployRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class AssetService {
 
     @Autowired
     private AssetRepo repo;
+
+    @Autowired
+    private EmployRepo erepo;
 
     @Autowired
     private StatusCalculationService status;
@@ -33,15 +39,26 @@ public class AssetService {
             asset.setStatus("ACTIVE");
             return repo.save(asset);
         }
+    }
 
+    public List<Asset>
+    getAssetsByEmployid(long id){
+        List<Asset> asset = repo.findAssetsByEmploy_id(id);
+        if (asset != null){
+            return asset;
+        }
+        return asset;
     }
 
     public Asset
     getAssetById(long id) {
         Asset asset = repo.findById(id).orElse(null);
-        status.calculateStatus(asset);
-        repo.save(asset);
-        return asset;
+        if (asset != null){
+            status.calculateStatus(asset);
+            repo.save(asset);
+            return asset;
+        } else return asset;
+
     }
 
     public List<Asset>
@@ -49,13 +66,16 @@ public class AssetService {
         List<Asset> assets = repo.findAll();
         assets.forEach(status::calculateStatus);
         return assets;
+
     }
 
     public String
     DeleteAssetById(long id) {
         Asset asset = getAssetById(id);
-        if (asset != null)
+        if (asset != null){
+            repo.deleteById(asset.getId());
             return "Success";
+        }
         return "Asset not Found or please enter correct details";
     }
 
@@ -82,6 +102,8 @@ public class AssetService {
 
 
 }
+
+
 
 
 

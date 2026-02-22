@@ -21,8 +21,8 @@ public class EmployController {
     public ResponseEntity<String>
     login(@RequestBody Employ employ) {
         try {
-            employService.createEmploy(employ);
-            return ResponseEntity.ok().build();
+            String token = employService.verify(employ);
+            return ResponseEntity.ok().body(token);
         } catch (Exception e){
             return ResponseEntity.badRequest().build();
         }
@@ -30,15 +30,27 @@ public class EmployController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Employ>
+    public ResponseEntity<String>
     createEmploy(@RequestBody Employ employ) {
-        return ResponseEntity.ok(employService.createEmploy(employ));
+        try {
+            String m = employService.createEmploy(employ);
+            return ResponseEntity.ok(m);
+        } catch (Exception e){
+            return ResponseEntity.ok(e.getMessage());
+        }
     }
 
     @GetMapping
     public ResponseEntity<List<Employ>>
     getAllEmploy(){
-        return ResponseEntity.ok(employService.getAllEmploy());
+        try {
+            List<Employ> employs = employService.getAllEmploy();
+            return ResponseEntity.ok(employs);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return ResponseEntity.internalServerError().body(null);
+        }
+
     }
 
     @GetMapping("/{id}")
@@ -53,8 +65,8 @@ public class EmployController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String>
-    deleteUser(@RequestBody Long id , String email, String password) {
-        return employService.DeleteEmployById(id,email,password) ?
+    deleteUser(@PathVariable Long id) {
+        return employService.DeleteEmployById(id) ?
                 ResponseEntity.ok("User deleted successfully") :
                 ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body("User not found");

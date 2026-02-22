@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -29,23 +30,27 @@ public class EmployService {
 
     public List<Employ>
     getAllEmploy() {
-        return repo.findAll();
+            return repo.findAll();
     }
 
     public boolean
-    DeleteEmployById(Long id, String email,String password) {
-        if (repo.existsById(id) && encoder.matches(password,getEmployById(id).getPassword())) {
+    DeleteEmployById(Long id) {
+        if (repo.existsById(id)) {
             repo.deleteById(id);
             return true;
         }
         return false;
     }
 
-    public Employ
+    public String
     createEmploy(Employ employ) {
-        employ.setRole("Role_User");
+        employ.setRole("Role_USER");
         employ.setPassword(encoder.encode(employ.getPassword()));
-        return repo.save(employ);
+        if (repo.findByEmail(employ.getEmail()) != null ){
+            return "Already exist";
+        }
+        repo.save(employ);
+        return "Created";
     }
 
     public Employ

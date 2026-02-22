@@ -32,6 +32,7 @@ public class Asset {
     @Column(nullable = false)
     @NotNull
     private LocalDate assigned_date;
+
     @Column(nullable = false)
     @NotNull
     private LocalDate decommission_date; // System-calculated decommission date (4 years from purchase)

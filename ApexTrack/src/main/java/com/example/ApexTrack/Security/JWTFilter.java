@@ -32,7 +32,7 @@ public class JWTFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
 
-        String authHeader = request.getHeader("Autheriztion");
+        String authHeader = request.getHeader("Authorization");
         String token = null;
         String username = null;
 
@@ -42,7 +42,8 @@ public class JWTFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = context.getBean(MyUserDetailService.class).loadUserByUsername(username);
+            UserDetails userDetails =
+                    context.getBean(MyUserDetailService.class).loadUserByUsername(username);
 
             if (jwtService.validatedToken(token,userDetails)) {
                 UsernamePasswordAuthenticationToken authToken =

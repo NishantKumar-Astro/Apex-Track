@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+
 import java.util.List;
+
+
 @RestController
 @RequestMapping("/api/assets")
 @CrossOrigin
@@ -24,6 +28,15 @@ public class AssetController {
             return ResponseEntity.internalServerError().build();
         }
 
+    }
+
+    @GetMapping("/employ_id/{id}")
+    public ResponseEntity<List<Asset>>
+    getAssetByEmployid(@PathVariable long id){
+        if (service.getAssetsByEmployid(id) != null ){
+            return ResponseEntity.ok(service.getAssetsByEmployid(id));
+        }
+        return null;
     }
 
     @GetMapping("/{id}")
@@ -58,6 +71,7 @@ public class AssetController {
                     ? ResponseEntity.ok(updated)
                     : ResponseEntity.notFound().build();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -76,8 +90,11 @@ public class AssetController {
     }
 
     @GetMapping("/decommissioned")
-    public ResponseEntity<List<Asset>> getDecommissionedAssets() {
-        return ResponseEntity.ok(service.getDecommissionedAssets());
+    public ResponseEntity<List<Asset>>
+    getDecommissionedAssets() {
+        if(service.getDecommissionedAssets() != null)
+            return ResponseEntity.ok(service.getDecommissionedAssets());
+        return (ResponseEntity<List<Asset>>) ResponseEntity.notFound();
     }
 
 }

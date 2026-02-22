@@ -10,13 +10,17 @@ import java.util.List;
 @Repository
 public interface AssetRepo extends JpaRepository<Asset, Long> {
 
+    @Query(value = "SELECT * " +
+            "FROM assets " +
+            "WHERE employ_id = :id",
+            nativeQuery = true)
+    List<Asset> findAssetsByEmploy_id(@Param("id") Long id);
+
     @Query("SELECT a FROM Asset a WHERE a.serial_no = :serial_no")
     Asset findBySerial_no(@Param("serial_no") String serial_no);
 
-
     @Query("SELECT a FROM Asset a WHERE a.status = 'ACTIVE'")
     List<Asset> findAssetsWithStatusActive();
-
 
     @Query("SELECT a FROM Asset a WHERE a.status = 'DECOMMISSIONED'")
     List<Asset> findAssetsWithStatusDecommissioned();
