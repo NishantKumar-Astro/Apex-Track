@@ -127,18 +127,18 @@ Database schematics(coming soon)
 🔮 Future Enhancements                                      
 Add email alerts for upcoming decommission dates                                                  
 
-Implement asset depreciation tracking                          
+Implement asset depreciation tracking                             
 
-Create a dashboard frontend                                          
+Create a dashboard frontend                                                                           
 
-Add role-based access (admin vs. employee)
+Add role-based access (admin vs. employee)                                    
 
-🤝 Contributing
-Open to suggestions and improvements – feel free to fork and submit PRs.
+🤝 Contributing                                             
+Open to suggestions and improvements – feel free to fork and submit PRs.                                          
 
-📄 License
-This project is for demonstration purposes.
+📄 License                                                            
+This project is for demonstration purposes.                                          
 
-📬 Contact
-Your Name – your.email@example.com
-GitHub: yourusername
+📬 Contact                                                   
+Nishatn Kumar– infinityseeker@gamil.com                                                
+GitHub: NishantKumar-Astro                                          
