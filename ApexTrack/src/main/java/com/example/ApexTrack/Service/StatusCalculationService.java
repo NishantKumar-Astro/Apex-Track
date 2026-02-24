@@ -30,7 +30,7 @@ public class StatusCalculationService {
             asset.setStatus("ACTIVE");
         }
         return asset;
-    }  // UPGRADE COMPLETED (ANOTHER UPGRADE OPTIONAL) UP TO DATE
+    }
 
     // Get assets that need upgrade (within 30 days of decommission)
     public List<Asset>
@@ -51,3 +51,22 @@ public class StatusCalculationService {
         return false;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

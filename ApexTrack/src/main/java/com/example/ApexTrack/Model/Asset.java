@@ -1,6 +1,6 @@
 package com.example.ApexTrack.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -30,18 +29,14 @@ public class Asset {
     private String type;
 
     @Column(nullable = false)
-    @NotNull
-    private LocalDate assigned_date;
-
+    private LocalDate assigned_date;     // Client provides purchase date
     @Column(nullable = false)
-    @NotNull
     private LocalDate decommission_date; // System-calculated decommission date (4 years from purchase)
-
     @Column(nullable = false)
     private String status; // "ACTIVE", "DECOMMISSIONED"
 
     @ManyToOne
     @JoinColumn(name = "employ_id")
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Employ employ;
 }

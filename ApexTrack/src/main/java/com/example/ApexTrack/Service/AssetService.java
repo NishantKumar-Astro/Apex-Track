@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class AssetService {
@@ -33,6 +32,10 @@ public class AssetService {
         if (repo.findBySerial_no(asset.getSerial_no()) != null) {
             return null;
         } else {
+            Long employId = asset.getEmploy().getId(); // assuming employ is not null
+            Employ managedEmploy = erepo.findById(employId)
+                    .orElseThrow(() -> new RuntimeException("Employ not found with id: " + employId));
+            asset.setEmploy(managedEmploy);
             LocalDate current = LocalDate.now();
             asset.setAssigned_date(current);
             asset.setDecommission_date(asset.getAssigned_date().plusYears(DEFAULT_DECOMMISSION_YEARS));
@@ -43,11 +46,7 @@ public class AssetService {
 
     public List<Asset>
     getAssetsByEmployid(long id){
-        List<Asset> asset = repo.findAssetsByEmploy_id(id);
-        if (asset != null){
-            return asset;
-        }
-        return asset;
+        return repo.findAssetsByEmploy_id(id);
     }
 
     public Asset
@@ -84,12 +83,18 @@ public class AssetService {
     updateAsset(long id, Asset asset) {
         Asset asset1 = repo.findById(id).orElse(null);
         if (asset1 != null) {
-            asset.setDecommission_date(asset1.getDecommission_date());
-            asset.setAssigned_date(asset1.getAssigned_date());
-            status.calculateStatus(asset);
-            return repo.save(asset);
+            if (asset.getAssigned_date() != null){
+                asset1.setAssigned_date(asset.getAssigned_date());
+                asset1.setDecommission_date(asset.getAssigned_date().plusYears(4));
+            }
+            if (asset.getSerial_no() != null)
+                asset1.setSerial_no(asset.getSerial_no());
+            if (asset.getType() != null)
+                asset1.setType(asset.getType());
+            status.calculateStatus(asset1);
+            return repo.save(asset1);
         }
-        return asset;
+        else return null;
     }
 
     public List<Asset> getActiveAssets() {
@@ -102,7 +107,6 @@ public class AssetService {
 
 
 }
-
 
 
 

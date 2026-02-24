@@ -40,7 +40,6 @@ public class Employ {
     private String email;
 
     @Column(nullable = false)
-    @NotNull
     private String role;
 
     @OneToMany(mappedBy = "employ", cascade = CascadeType.ALL)

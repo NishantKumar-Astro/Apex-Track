@@ -2,6 +2,7 @@ package com.example.ApexTrack.Controller;
 
 import com.example.ApexTrack.Model.Employ;
 import com.example.ApexTrack.Service.EmployService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,12 +32,12 @@ public class EmployController {
 
     @PostMapping("/register")
     public ResponseEntity<String>
-    createEmploy(@RequestBody Employ employ) {
+    createEmploy(@Valid @RequestBody Employ employ) {
         try {
-            String m = employService.createEmploy(employ);
-            return ResponseEntity.ok(m);
-        } catch (Exception e){
-            return ResponseEntity.ok(e.getMessage());
+            String result = employService.createEmploy(employ);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -71,6 +72,4 @@ public class EmployController {
                 ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body("User not found");
     }
-
-
 }

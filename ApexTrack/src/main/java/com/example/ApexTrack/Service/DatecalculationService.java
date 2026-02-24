@@ -51,3 +51,14 @@ public class DatecalculationService {
         return repo.findAssetsWithStatusDecommissioned();
     }
 }
+
+
+
+
+
+
+
+
+
+
+

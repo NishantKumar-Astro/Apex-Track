@@ -2,6 +2,7 @@ package com.example.ApexTrack.Controller;
 
 import com.example.ApexTrack.Model.Asset;
 import com.example.ApexTrack.Service.AssetService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,13 +51,14 @@ public class AssetController {
 
     @PostMapping
     public ResponseEntity<Asset>
-    addAsset(@RequestBody Asset asset) {
+    addAsset(@Valid @RequestBody Asset asset) {
         try {
             Asset asset1 = service.addAsset(asset);
             if (asset1 != null)
                 return new ResponseEntity<>(asset1, HttpStatus.CREATED);
             else return new ResponseEntity<>(asset1,HttpStatus.ALREADY_REPORTED);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -92,12 +94,11 @@ public class AssetController {
     @GetMapping("/decommissioned")
     public ResponseEntity<List<Asset>>
     getDecommissionedAssets() {
-        if(service.getDecommissionedAssets() != null)
-            return ResponseEntity.ok(service.getDecommissionedAssets());
-        return (ResponseEntity<List<Asset>>) ResponseEntity.notFound();
+        return ResponseEntity.ok(service.getDecommissionedAssets());
     }
 
 }
+
 
 
 
