@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,13 +33,14 @@ public class EmployService {
             return repo.findAll();
     }
 
-    public boolean
-    DeleteEmployById(Long id) {
-        if (repo.existsById(id)) {
-            repo.deleteById(id);
-            return true;
+    @Transactional         
+    public boolean DeleteEmployById(Long id) {
+        Employ user = repo.findById(id).orElse(null);
+        if (user == null) {
+            return false;
         }
-        return false;
+        user.getAssets().size();
+        return true;
     }
 
     public String
@@ -75,3 +77,4 @@ public class EmployService {
     }
 
 }
+
