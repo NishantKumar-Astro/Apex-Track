@@ -23,7 +23,7 @@ public class OpenAPIConfig {
                                         .scheme("bearer")
                                         .bearerFormat("JWT")))
                 .info(new Info()
-                        .title("FinanceTracker API")
+                        .title("ApexTrack API")
                         .description("API documentation with JWT bearer token")
                         .version("1.0"));
     }
