@@ -20,7 +20,7 @@ public class EmployController {
 
     @PostMapping("/login")
     public ResponseEntity<String>
-    login(@RequestBody Employ employ) {
+    login(@RequestBody PasswordRequest employ) {
         try {
             String token = employService.verify(employ);
             return ResponseEntity.ok().body(token);
@@ -73,5 +73,6 @@ public class EmployController {
                         .body("User not found");
     }
 }
+
 
 
