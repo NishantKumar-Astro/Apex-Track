@@ -1,7 +1,14 @@
 
 # ApexTrack – IT Asset Management System
 
-ApexTrack is a secure REST API for tracking IT assets (laptops, servers, monitors) assigned to employees. It automatically calculates decommission dates and asset status (ACTIVE/DECOMMISSIONED). Built with Spring Boot, JWT authentication, and PostgreSQL.
+ApexTrack is a secure REST API for tracking IT assets (laptops, servers, monitors) assigned to employees. It automatically calculates decommission dates and asset status (ACTIVE/DECOMMISSIONED). 
+Built with Spring Boot, 
+JWT authentication,
+Postman,
+PostgreSQL.
+
+#Deployment Link
+https://apex-track-production.up.railway.app/swagger-ui/index.html#/
 
 ## ✨ Features
 
