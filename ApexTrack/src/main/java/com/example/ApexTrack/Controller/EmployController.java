@@ -66,10 +66,11 @@ public class EmployController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String>
-    deleteUser(@PathVariable Long id) {
-        return employService.DeleteEmployById(id) ?
+    deleteUser(@PathVariable Long id, @RequestBody PasswordRequest password) {
+        return employService.DeleteEmployById(id,password.getPassword()) ?
                 ResponseEntity.ok("User deleted successfully") :
                 ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body("User not found");
     }
 }
+
