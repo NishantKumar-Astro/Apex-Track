@@ -33,14 +33,18 @@ public class EmployService {
             return repo.findAll();
     }
 
-    @Transactional         
-    public boolean DeleteEmployById(Long id) {
+    @Transactional
+    public boolean DeleteEmployById(Long id, String password) {
         Employ user = repo.findById(id).orElse(null);
         if (user == null) {
             return false;
         }
-        user.getAssets().size();
-        return true;
+        if (encoder.matches(password, user.getPassword())) {
+            user.getAssets().size(); // triggers loading
+            repo.delete(user);       // cascades delete to all assets
+            return true;
+        }
+        return false;
     }
 
     public String
@@ -77,4 +81,5 @@ public class EmployService {
     }
 
 }
+
 
