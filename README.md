@@ -23,7 +23,7 @@ https://apex-track-production.up.railway.app/swagger-ui/index.html#/
 ## 🛠️ Tech Stack
 
 - **Java 21**                                                  
-- **Spring Boot 3** (Web, Security, Data JPA)                                          
+- **Spring Boot 3.5.9** (Web, Security, Data JPA)                                          
 - **Spring Security** with JWT (io.jsonwebtoken)                                                  
 - **PostgreSQL** (production) / **H2** (development)                                            
 - **Lombok** – reduce boilerplate                                                
