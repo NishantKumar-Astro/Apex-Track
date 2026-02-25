@@ -36,8 +36,10 @@ public class AssetService {
             Employ managedEmploy = erepo.findById(employId)
                     .orElseThrow(() -> new RuntimeException("Employ not found with id: " + employId));
             asset.setEmploy(managedEmploy);
-            LocalDate current = LocalDate.now();
-            asset.setAssigned_date(current);
+            if(asset.getAssigned_date() == null){
+                LocalDate current = LocalDate.now();
+                asset.setAssigned_date(current);
+            }
             asset.setDecommission_date(asset.getAssigned_date().plusYears(DEFAULT_DECOMMISSION_YEARS));
             asset.setStatus("ACTIVE");
             return repo.save(asset);
@@ -107,6 +109,7 @@ public class AssetService {
 
 
 }
+
 
 
 
