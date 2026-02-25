@@ -64,7 +64,7 @@ public class EmployService {
     }
 
     public String
-    verify(Employ employ) {
+    verify(PasswordRequest employ) {
         try{
             Authentication authentication = authmanager.authenticate(
                     new UsernamePasswordAuthenticationToken(employ.getUsername(),employ.getPassword())
@@ -81,5 +81,6 @@ public class EmployService {
     }
 
 }
+
 
 
