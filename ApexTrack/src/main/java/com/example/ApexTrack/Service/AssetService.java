@@ -106,10 +106,7 @@ public class AssetService {
     public List<Asset> getDecommissionedAssets() {
         return repo.findAssetsWithStatusDecommissioned();
     }
-
-
 }
-
 
 
 

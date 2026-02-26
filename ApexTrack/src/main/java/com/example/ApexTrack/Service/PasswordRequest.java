@@ -6,4 +6,5 @@ import lombok.Data;
 public class PasswordRequest {
     private String username;
     private String password;
+    // getter and setter
 }

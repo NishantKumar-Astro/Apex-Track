@@ -2,12 +2,13 @@ package com.example.ApexTrack.Controller;
 
 import com.example.ApexTrack.Model.Employ;
 import com.example.ApexTrack.Service.EmployService;
+import com.example.ApexTrack.Service.PasswordRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.ApexTrack.Service.PasswordRequest;
+
 import java.util.List;
 
 @RestController
@@ -73,6 +74,3 @@ public class EmployController {
                         .body("User not found");
     }
 }
-
-
-

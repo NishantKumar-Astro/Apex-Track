@@ -40,6 +40,7 @@ public class EmployService {
             return false;
         }
         if (encoder.matches(password, user.getPassword())) {
+            System.out.println(encoder.matches(password,user.getPassword()));
             user.getAssets().size(); // triggers loading
             repo.delete(user);       // cascades delete to all assets
             return true;
@@ -60,7 +61,7 @@ public class EmployService {
 
     public Employ
     getEmployById(long id) {
-        return repo.findById(id);
+        return repo.findById(id).orElse(null);
     }
 
     public String
@@ -81,6 +82,3 @@ public class EmployService {
     }
 
 }
-
-
-

@@ -33,7 +33,6 @@ public class SecurityConfig {
                 .csrf( auth -> auth.disable())
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers(
-                                "/",
                                 "/api/employ/login",
                                 "/api/employ/register",
                                 "/v3/api-docs/**",
@@ -60,4 +59,3 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 }
-
