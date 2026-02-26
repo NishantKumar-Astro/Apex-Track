@@ -4,6 +4,9 @@
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![Junit](https://img.shields.io/badge/junit-%23E33332?logo=junit5&logoColor=white)
+![Railway](https://img.shields.io/badge/Railway-131415?style=for-the-badge&logo=railway&logoColor=white)
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellijidea&logoColor=white)
 
 ApexTrack is a secure REST API for tracking IT assets (laptops, servers, monitors) assigned to employees. It automatically calculates decommission dates and asset status (ACTIVE/DECOMMISSIONED). 
 Built with Spring Boot, 
