@@ -55,9 +55,9 @@ ApexTrack/
 ### Installation
 
 1. **Clone the repository**                                        
-   bash                                          
-   git clone https://github.com/yourusername/ApexTrack.git                                        
-   cd ApexTrack                                              
+      ```bash                                          
+      git clone https://github.com/yourusername/ApexTrack.git                                        
+      cd ApexTrack                                              
 
 2. Configure database (skip for H2)
    Edit src/main/resources/application.properties:                    
@@ -67,10 +67,11 @@ ApexTrack/
    spring.jpa.hibernate.ddl-auto=update                                         
 
 3.Build and run
- bash
- mvn clean install
- mvn spring-boot:run
- API will be available at http://localhost:8080.
+      ```bash
+      mvn clean install
+      mvn spring-boot:run
+      ```
+API will be available at http://localhost:8080.
 
 📋 API Endpoints
 Employee (User) Endpoints                                    
@@ -82,6 +83,7 @@ GET	/api/employ/{id}	Get employee by ID	Yes
 DELETE	/api/employ/{id}	Delete employee (and assets)	Yes                                
 
 Asset Endpoints (JWT required)                                            
+```
 Method	Endpoint	Description                                        
 GET	/api/assets	Get all assets                                            
 GET	/api/assets/{id}	Get asset by ID                                            
@@ -91,11 +93,11 @@ GET	/api/assets/decommissioned	Get all decommissioned assets
 POST	/api/assets	Add a new asset (auto-calculates dates)                                      
 PUT	/api/assets/{id}	Update asset details                                          
 DELETE	/api/assets/{id}	Delete asset                                        
-
+```
 🔍 Sample Queries
 Register an employee                              
 
-json                                        
+```json                                        
 POST /api/employ/register                                                  
 {                                                  
   "username": "alice",                                      
@@ -104,8 +106,9 @@ POST /api/employ/register
   "department": "Engineering"                                        
 }                                          
 Add an asset (auto‑assigns current date and decommission date = today + 4 years)                                        
+```
 
-json                                                        
+```json                                                        
 POST /api/assets                                                  
 Authorization: Bearer <your-token>                                                        
 {                                                              
@@ -115,6 +118,7 @@ Authorization: Bearer <your-token>
   "employ": { "id": 1 }                                                  
 }                                                
 Get assets needing upgrade (within 30 days of decommission)                                            
+```
 
 text                                                
 GET /api/assets/upgrade-needed                                        
