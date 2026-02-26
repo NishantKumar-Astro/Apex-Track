@@ -12,6 +12,7 @@ https://apex-track-production.up.railway.app/swagger-ui/index.html#/
 
 ## ✨ Features
 
+- **Testing** - Junit and Mockito                                                      
 - **Employee Management** – Register employees (users) with secure login (JWT)
 - **Asset Tracking** – Add, update, delete, and view assets
 - **Automatic Decommission** – Assets are decommissioned 4 years after assignment (configurable)
