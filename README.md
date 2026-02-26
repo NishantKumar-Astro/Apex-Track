@@ -124,7 +124,7 @@ Authorization: Bearer <your-token>
 Get assets needing upgrade (within 30 days of decommission)                                            
 
 
-text                                                
+```text                                                
 GET /api/assets/upgrade-needed                                        
 🧮 Business Logic                                                    
 Decommission date = assignment date + 4 years (configurable in AssetService)                                          
@@ -136,6 +136,7 @@ ACTIVE – if current date ≤ decommission date
 DECOMMISSIONED – if current date > decommission date                                                  
 
 Upgrade needed – assets with decommission date within the next 30 days                                            
+```
 
 🗂️ Database Schema  
 Database schematics(coming soon)                                       
