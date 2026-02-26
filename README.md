@@ -60,12 +60,13 @@ ApexTrack/
       cd ApexTrack                                              
 
 2. Configure database (skip for H2)
+```
    Edit src/main/resources/application.properties:                    
    spring.datasource.url=jdbc:postgresql://localhost:5432/apextrack_db                  
    spring.datasource.username=yourusername                                    
    spring.datasource.password=yourpassword                          
    spring.jpa.hibernate.ddl-auto=update                                         
-
+```
 3.Build and run
       ```bash
       mvn clean install
@@ -75,12 +76,14 @@ API will be available at http://localhost:8080.
 
 📋 API Endpoints
 Employee (User) Endpoints                                    
+```
 Method	Endpoint	Description	Auth Required                                                
 POST	/api/employ/register	Register new employee	No                                        
 POST	/api/employ/login	Login & receive JWT	No                                        
 GET	/api/employ	Get all employees	Yes                                      
 GET	/api/employ/{id}	Get employee by ID	Yes                                            
 DELETE	/api/employ/{id}	Delete employee (and assets)	Yes                                
+```
 
 Asset Endpoints (JWT required)                                            
 ```
@@ -105,8 +108,8 @@ POST /api/employ/register
   "password": "secret",                                          
   "department": "Engineering"                                        
 }                                          
-Add an asset (auto‑assigns current date and decommission date = today + 4 years)                                        
 ```
+Add an asset (auto‑assigns current date and decommission date = today + 4 years)                                        
 
 ```json                                                        
 POST /api/assets                                                  
@@ -117,8 +120,9 @@ Authorization: Bearer <your-token>
   "assigned_date": "2025-03-01",                                            
   "employ": { "id": 1 }                                                  
 }                                                
-Get assets needing upgrade (within 30 days of decommission)                                            
 ```
+Get assets needing upgrade (within 30 days of decommission)                                            
+
 
 text                                                
 GET /api/assets/upgrade-needed                                        
