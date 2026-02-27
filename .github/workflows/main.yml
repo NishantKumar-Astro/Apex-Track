@@ -26,8 +26,3 @@ jobs:
       working-directory: ./ApexTrack   # ✅ Correct folder name (case-sensitive)
 
 
-
-
-
-  
-      working-directory: ./apextrack   # <-- adjust if your pom.xml is in a different folder
