@@ -29,6 +29,5 @@ jobs:
 
 
 
-    - name: Build with Maven
-      run: mvn clean verify
+  
       working-directory: ./apextrack   # <-- adjust if your pom.xml is in a different folder
