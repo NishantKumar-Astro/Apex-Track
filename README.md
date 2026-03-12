@@ -15,7 +15,7 @@ JWT authentication,
 Postman,
 PostgreSQL.
 
-## 🚄 Deployment Platform- Railway                                                       
+## 🚄 Deployment Platform- Railway      (Currently on status: Undeployed due to lack of money)                                           
 https://apex-track-production.up.railway.app/swagger-ui/index.html#/
 
 ## ✨ Features
